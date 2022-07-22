@@ -1,5 +1,5 @@
 // create the team
-const generateteamMembers = teamMembers => {
+const generateTeam = team => {
 
     // create the manager html
     const generateManager = manager => {
@@ -60,16 +60,16 @@ const generateteamMembers = teamMembers => {
 
     const html = [];
 
-    html.push(teamMembers
+    html.push(team
         .filter(employee => employee.getRole() === "Manager")
         .map(manager => generateManager(manager))
     );
-    html.push(teamMembers
+    html.push(team
         .filter(employee => employee.getRole() === "Engineer")
         .map(engineer => generateEngineer(engineer))
         .join("")
     );
-    html.push(teamMembers
+    html.push(team
         .filter(employee => employee.getRole() === "Intern")
         .map(intern => generateIntern(intern))
         .join("")
@@ -80,7 +80,7 @@ const generateteamMembers = teamMembers => {
 }
 
 // export function to generate entire page
-module.exports = teamMembers => {
+module.exports = team => {
 
     return `
     <!DOCTYPE html>
@@ -108,7 +108,7 @@ module.exports = teamMembers => {
     <div class="container">
         <div class="row">
             <div class="team-area col-12 d-flex justify-content-center">
-                ${generateteamMembers(teamMembers)}
+                ${generateTeam(team)}
             </div>
         </div>
     </div>

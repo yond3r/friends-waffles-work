@@ -15,7 +15,7 @@ const generateHTML = require(`./Develop/util/generateHtml`);
 
 //file writing (???)
 function genHTML (fileName, data) {
-    fs.writeFile(`./dist/index.html`, generateHTML(teamMembers),  err => {
+    fs.writeFileSync(`./dist/index.html`, generateHTML(team),  err => {
         if (err){
             throw err
         }
@@ -23,7 +23,8 @@ function genHTML (fileName, data) {
     })
 }
 //arrays for storage
-const teamMembers = [];
+const team = [];
+
 
 //prompts
 function userInfo() {
@@ -31,7 +32,7 @@ function userInfo() {
         {
             type: "input",
             message: "Please enter the employee name here.",
-            name: "name",
+            name: "employeeName",
             function(nameInput) {
                 if (nameInput) {
                     return true;
@@ -92,9 +93,10 @@ function userInfo() {
 
                     .then(answers => {
                         console.log(answers.office);
-                        const ManagerTeam = new Manager(answers.name, answers.email, answers.id, answers.role, answers.office);
-                        teamMembers.push(ManagerTeam);
+                        let manager = new Manager (answers.employeeName, answers.email, answers.id, answers.role, answers.office);
+                        team.push(manager);
                         addOption()
+                        console.log(team);
                     })
 
             } else if (answers.role === 'Engineer') {
@@ -114,10 +116,12 @@ function userInfo() {
                 ])
 
                     .then(answers => {
-                        console.log(answers.github)
-                        const EngineerTeam = new Engineer(answers.name, answers.email, answers.id, answers.role, answers.github);
-                        teamMembers.push(EngineerTeam);
+                        console.log(answers.GitHub)
+                        const engineer = new Engineer(answers.name, answers.email, answers.id, answers.role, answers.GitHub);
+                        console.log(team);
+                        team.push(engineer);
                         addOption();
+                        console.log(team);
                     })
 
             } else if (answers.role === 'Intern') {
@@ -137,15 +141,17 @@ function userInfo() {
                 ])
                     .then(answers => {
                         console.log(answers.school);
-                        const internTeam = new Intern(answers.name, answers.email, answers.id, answers.role);
-                        teamMembers.push(internTeam);
+                        console.log(team);
+                        const intern = new Intern(answers.name, answers.email, answers.id, answers.role);
+                        team.push(intern);
                         addOption()
+                        console.log(team);
                     })
             }
 
             else {
-                const employeeTeam = new Employee(answers.name, answers.email, answers.id, answers.role);
-                teamMembers.push(employeeTeam);
+                const employee = new Employee(answers.name, answers.email, answers.id, answers.role);
+                team.push(employee);
                 addOption();
             }
 
@@ -159,9 +165,12 @@ function userInfo() {
                 ])
                 .then(response => {
                     if (response.addMore === true){
-                        userInfo(teamMembers);
+                        userInfo(team);
+                    } else {
+                        genHTML();
                     }
-                })
-        }})};
+                    }
+                )}
+        })};
 
         userInfo();

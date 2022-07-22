@@ -15,12 +15,17 @@ class Employee {
         return this.email;
     }
 
-    getID() {
+    getId() {
         return this.id;
     }
 
     getRole() {
-        return this.role;
+        return "Employee";
     }
 }
 module.exports = Employee;
+
+// Manager -- Ron Swanson
+// Engineer -- Leslie Knope
+// Engineer -- Ben Wyatt -- ice town
+// Intern -- April Ludgate 
