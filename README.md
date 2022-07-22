@@ -13,6 +13,9 @@
  ## VideoFile
  
 
+https://user-images.githubusercontent.com/106720762/180368271-f547d34d-b7f5-46a1-bca1-cc281fc289e1.mp4
+
+
  ## Video URLs
  - [The Drive Link w/ the Parks & Rec-inspired Team Generator](https://drive.google.com/file/d/19yCyw61FA6AT5CL3PK2PY_2Vmo5DowiT/view?usp=sharing)
  
@@ -32,5 +35,5 @@
  - false
  
  ## License
- - ![License: MIT](https://opensource.org/licenses/MIT)
+ - (https://opensource.org/licenses/MIT)
  
